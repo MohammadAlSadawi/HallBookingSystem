@@ -1,0 +1,171 @@
+﻿@model HomeVM
+@{
+    Layout = "~/views/Shared/_startLayout.cshtml";
+}
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="slider_active owl-carousel">
+        <div class="single_slider d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image1)) ">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                            <h3>Welcome to Hall Booking</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider  d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image2)) ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image3)) ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- slider_area_end -->
+<!-- about_area_start -->
+<div class="about_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5">
+                <div class="about_info">
+                    <div class="section_title mb-20px">
+                        <h1> <span>Description</span></h1>
+                        <h3>
+                            Halls Booking <br>
+                        </h3>
+                    </div>
+                    <p><h3>@Model.home.Description</h3></p>
+
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7">
+                <div class="about_thumb d-flex">
+                    <div class="img_1">
+                        <img src=@Url.Content("~/Image/"+@Model.home.Image2) asp-append-version="true" alt="">
+
+                    </div>
+                    @*<div class="img_2">
+                    <img src=@Url.Content("~/Image/"+@Model.home.Image3) asp-append-version="true" alt="">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about_area_end -->
+<!-- offers_area_start -->
+<div class="offers_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-100">
+                    <span>Our Offers</span>
+                    <h3>Ongoing Offers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.halls)
+            {
+                @*<input type="text" id="HallId" value="@item.Id" hidden/>*@
+            
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_offers">
+                        <div class="about_thumb">
+                            @*<img src="~/Home/img/offers/1.png" alt="">*@
+                            <img src=@Url.Content("~/Image/"+item.Imagepath) asp-append-version="true" height="200" />
+                        </div>
+                        <h1>@item.Name</h1>
+                        <br>
+                        <h3>
+                            @item.Description<br>
+                        </h3>
+                        <ul>
+                            <li>@item.Price</li>
+                            @{
+                                if (item.Address != null)
+                                {
+                                            <li>@item.Address.City</li>
+                                }
+                                else
+                                {
+                                            <li>No Location</li>
+                                }
+                            }
+
+                            @*<li>Sea view side</li>*@
+                        </ul>
+                        <div class="book_btn d-none d-lg-block">
+                            <a asp-controller="Auth" asp-action="Login" class=" book_now test">book now</a>
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- offers_area_end -->
+  <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-100">
+                    <span>Custemor Fedback</span>
+                    <h3>About Website</h3>
+                </div>
+            </div>
+        </div>
+<div class="slider_area">
+    <div class="slider_active owl-carousel">
+         @foreach (var item in Model.testimonials)
+         {
+      @*  <div class="single_slider d-flex align-items-center justify-content-center "  >*@
+         
+             
+       
+            <div class="container">
+                <div class="row">
+                    
+                     <div class="slider_text text-center" style="margin:auto">
+                              <img width="200" height="200" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" >
+                              </div>
+                             
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                            
+                            <h3>@item.User.FirstName</h3>
+                            <br/>
+                            <h3>@item.Feedback</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+       @* </div>*@
+         }
+    
+
+    </div>
+</div>
+<br/>
+<br/>

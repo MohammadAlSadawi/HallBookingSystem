@@ -1,0 +1,150 @@
+﻿@model HomeVM
+@{ 
+    Layout = "~/views/Shared/_HomeLayout.cshtml";
+}
+<div class="slider_area">
+        <div class="slider_active owl-carousel">
+ <div class="single_slider  d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image2)) ">
+   <div class="container">
+        <div class="row">
+               <div class="col-xl-12">
+                   <div class="slider_text text-center">
+                        
+                    </div>
+               </div>
+         </div>
+   </div>
+  </div>
+  </div>
+  </div>
+  <br/>
+  <br/>
+   <div class="offers_area">
+        <div class="container">
+  <h2>Search Hall</h2>
+<div class="row">
+    <div class="col-6">
+        <form asp-action="Search" method="post">
+            <label for="name">Hall Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Name" />
+            <label for="address">Address</label>
+            <input type="text" class="form-control" name="address" placeholder="Address" />
+            <br />
+            <button type="submit" class="btn btn-danger"> search</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+ <div class="offers_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-100">
+                        <span>Our Offers</span>
+                        <h2>All Of Halls</h2>
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+            @foreach (var item in Model.halls)
+            {
+                @*<input type="text" id="HallId" value="@item.Id" hidden/>*@
+            
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_offers">
+                        <div class="about_thumb">
+                            @*<img src="~/Home/img/offers/1.png" alt="">*@
+                            <img src=@Url.Content("~/Image/"+item.Imagepath) asp-append-version="true" height="200" />
+                        </div>
+                        <h1>@item.Name</h1>
+                        <br>
+                        <h3>
+                            @item.Description<br>
+                        </h3>
+                        <ul>
+                            <li>@item.Price</li>
+                            @{
+                                if (item.Address != null)
+                                {
+                                            <li>@item.Address.City</li>
+                                }
+                                else
+                                {
+                                            <li>No Location</li>
+                                }
+                            }
+
+                            @*<li>Sea view side</li>*@
+                        </ul>
+                        <div class="book_btn d-none d-lg-block">
+                            <a href="#test-form" onClick="reply_click(@item.Id)" class="popup-with-form book_now test">book now</a>
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+            }
+        </div>
+        </div>
+    </div>
+
+<!-- offers_area_end -->
+<form id="test-form" class="white-popup-block mfp-hide" asp-action="Reservation">
+    <div class="popup_box ">
+        <div class="popup_inner">
+            <h3>Check Availability</h3>
+            <form asp-action="Reservation">
+                <input type="text" hidden asp-for="UserHall.Id" />
+                <input type="text" hidden  id="HallId" asp-for="UserHall.HallId" value=""/>
+                
+                <input type="text" hidden asp-for="UserHall.UserId" value="@ViewBag.userid" />
+                
+                <div class="row">
+                    <div class="col-xl-6">
+                        <input id="datepicker" asp-for="UserHall.StartDate" placeholder="Start Date">
+                        <span asp-validation-for="UserHall.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-xl-6">
+                        <input id="datepicker2" asp-for="UserHall.EndDate" placeholder="End Daate">
+                        <span asp-validation-for="UserHall.EndDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <select class="form-select wide" asp-for="UserHall.CategoryId" id="default-select">
+                            <option data-display="Book type" hidden selected>Book type</option>
+
+                            @foreach (var item in Model.Categories)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                           
+                        </select>
+                        <span asp-validation-for="UserHall.CategoryId" class="text-danger"></span>
+
+                    </div>
+                     <div class="col-xl-12">
+                       <a asp-controller="Home" asp-action="Visa" class=" book_now test"> check card</a>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="col-xl-12">
+                        <button type="submit" class="boxed-btn3">Check Availability</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
+
+@section scripts{
+    <script>
+  function reply_click(clicked_id)
+  {
+      document.getElementById("HallId").value =clicked_id;
+  }
+document.getElementById('hallId').value = reply_click(clicked_id);
+    </script>
+}

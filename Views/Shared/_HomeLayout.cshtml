@@ -1,0 +1,266 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Halls Booking System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Home/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Home/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Home/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Home/css/nice-select.css">
+    <link rel="stylesheet" href="~/Home/css/flaticon.css">
+    <link rel="stylesheet" href="~/Home/css/gijgo.css">
+    <link rel="stylesheet" href="~/Home/css/animate.css">
+    <link rel="stylesheet" href="~/Home/css/slicknav.css">
+    <link rel="stylesheet" href="~/Home/css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" asp-controller="Home" asp-action="Index">home</a></li>
+                                        <li><a asp-controller="Home" asp-action="Search">Halls</a></li>
+                                        <li><a asp-controller="Home" asp-action="AboutUs">About</a></li>
+                                     
+                                      @*  <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">blog</a></li>
+                                                <li><a href="single-blog.html">single-blog</a></li>
+                                            </ul>
+                                        </li>*@
+                                       @* <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="elements.html">elements</a></li>
+                                            </ul>
+                                        </li>*@
+                                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                                         <li><a asp-controller="Home" asp-action="StartIndex">Logout</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="index.html">
+                                   @* <img src="~/Home/img/logo.png" alt="">*@
+                                   <img src="~/Image/hall_logo-removebg-preview.png" width="200" height="150"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="book_room">
+                                 <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li>
+                                            <div class="main-menu  d-none d-lg-block" style="color:azure; font-weight:bold;font-size:large">
+                                    <a>
+                                   User: @ViewBag.UserName
+                                    </a>
+                                 </div>
+                                        </li>
+                                        <li>
+                                           <a asp-controller="Home" asp-action="Profile" asp-route-id="@ViewBag.userid">My Profile</a>
+                                        </li>
+                                     
+                                       
+                                    </ul>
+                                    </nav>
+                                </div>
+                             
+                               @* <div class="book_btn d-none d-lg-block">
+                                    <a class="popup-with-form" href="#test-form">Book A Hall</a>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    
+
+        @RenderBody()
+ <!-- footer -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                address
+                            </h3>
+                            <p class="footer_text"> Jordan  ,  Amman</p>
+                          
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Contact
+                            </h3>
+                            <p class="footer_text">078888555 <br>
+                                HallBooking@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Pages
+                            </h3>
+                            <ul>
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Home" asp-action="Search">Hall</a></li>
+                                <li><a asp-controller="Home" asp-action="AboutUs">About</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-8 col-md-7 col-lg-9">
+                        <p class="copy_right">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- link that opens popup -->
+
+    <!-- form itself end-->
+        <form id="test-form" class="white-popup-block mfp-hide">
+                <div class="popup_box ">
+                        <div class="popup_inner">
+                            <h3>Check Availability</h3>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <input id="datepicker" placeholder="Check in date">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <input id="datepicker2" placeholder="Check out date">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <select class="form-select wide" id="default-select" >
+                                            <option data-display="Adult">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <select class="form-select wide" id="default-select" >
+                                            <option data-display="Children">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <select class="form-select wide" id="default-select" >
+                                            <option data-display="Room type">Room type</option>
+                                            <option value="1">Laxaries Rooms</option>
+                                            <option value="2">Deluxe Room</option>
+                                            <option value="3">Signature Room</option>
+                                            <option value="4">Couple Room</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <button type="submit" class="boxed-btn3">Check Availability</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </form>
+    <!-- form itself end -->
+
+    <!-- JS here ~/Home/-->
+    <script src="~/Home/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Home/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Home/js/popper.min.js"></script>
+    <script src="~/Home/js/bootstrap.min.js"></script>
+    <script src="~/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Home/js/isotope.pkgd.min.js"></script>
+    <script src="~/Home/js/ajax-form.js"></script>
+    <script src="~/Home/js/waypoints.min.js"></script>
+    <script src="~/Home/js/jquery.counterup.min.js"></script>
+    <script src="~/Home/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Home/js/scrollIt.js"></script>
+    <script src="~/Home/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Home/js/wow.min.js"></script>
+    <script src="~/Home/js/nice-select.min.js"></script>
+    <script src="~/Home/js/jquery.slicknav.min.js"></script>
+    <script src="~/Home/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Home/js/plugins.js"></script>
+    <script src="~/Home/js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="~/Home/js/contact.js"></script>
+    <script src="~/Home/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Home/js/jquery.form.js"></script>
+    <script src="~/Home/js/jquery.validate.min.js"></script>
+    <script src="~/Home/js/mail-script.js"></script>
+               
+    <script src="~/Home/js/main.js"></script>
+    <script>     
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+﻿@model HomeVM
+@{ 
+    Layout = "~/views/Shared/_HomeLayout.cshtml";
+}
+    <!-- bradcam_area_start -->
+    <div class="bradcam_area " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image1))">
+        <h3>About Hall Booking </h3>
+    </div>
+    <!-- bradcam_area_end -->
+
+    <!-- about_area_start -->
+    <div class="about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5">
+                    <div class="about_info">
+                        <div class="section_title mb-20px">
+                            <span>About Us</span>
+                            <h3>Description of Hall Booking System</h3>
+                        </div>
+                        <p>@Model.Aboutu.Descriptoin</p>
+                       
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7">
+                    <div class="about_thumb d-flex">
+                        <div class="img_1">
+                            <img src=@Url.Content("~/Image/"+@Model.home.Image3) alt="">
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about_area_end -->
+
+    <!-- about_info_area_start -->
+   
+    <!-- about_info_area_start -->
+
+    <!-- about_main_info_start -->
+ @*   <div class="about_main_info">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <div class="single_about_info">
+                        <h3>We Serve Fresh and <br>
+                            Delicious Food</h3>
+                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
+                            </p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="single_about_info">
+                        <h3>We Serve Fresh and <br>
+                            Delicious Food</h3>
+                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <!-- about_main_info_end -->
+
+    <!-- forQuery_start -->
+

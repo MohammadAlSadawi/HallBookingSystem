@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FirstProjectHallBooking.Models.UserHall>
+@{ Layout = "~/views/shared/_AdminLayout.cshtml"; }
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @if (item.IsApproved==true)
+                    {
+                        <text>Approved</text>
+                    }
+                    else if (item.IsApproved==false)
+                    {
+                     <text>Rejected</text>   
+                    }else
+                    {
+                        <text>In Progress</text>
+                    }
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hall.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                @{
+                    if (item.IsApproved==null)
+                        {
+                           <text>|</text>  <a asp-action="ApproveUserHall"  asp-route-id="@item.Id">Approve</a> <text>|</text>
+                         <a asp-action="RejectUserHall" asp-route-id="@item.Id">Reject</a> 
+                        }
+                }
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

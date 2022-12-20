@@ -1,0 +1,280 @@
+﻿@model HomeVM
+@{
+    Layout = "~/views/Shared/_HomeLayout.cshtml";
+}
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="slider_active owl-carousel">
+        <div class="single_slider d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image1)) ">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                            <h3>Welcome to Hall Booking</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider  d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image2))">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider d-flex align-items-center justify-content-center " style="background-image:url(@Url.Content("~/Image/"+@Model.home.Image3)) ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- slider_area_end -->
+<!-- about_area_start -->
+<div class="about_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5">
+                <div class="about_info">
+                    <div class="section_title mb-20px">
+                        <h1> <span>Description</span></h1>
+                        <h3>
+                            Halls Booking <br>
+                        </h3>
+                    </div>
+                    <p><h3>@Model.home.Description</h3></p>
+
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7">
+                <div class="about_thumb d-flex">
+                    <div class="img_1">
+                        <img src=@Url.Content("~/Image/"+@Model.home.Image2) asp-append-version="true" alt="">
+
+                    </div>
+                    @*<div class="img_2">
+                    <img src=@Url.Content("~/Image/"+@Model.home.Image3) asp-append-version="true" alt="">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about_area_end -->
+<!-- offers_area_start -->
+<div class="offers_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-100">
+                    <span>Our Offers</span>
+                    <h3>Ongoing Offers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.halls)
+            {
+                @*<input type="text" id="HallId" value="@item.Id" hidden/>*@
+            
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_offers">
+                        <div class="about_thumb">
+                            @*<img src="~/Home/img/offers/1.png" alt="">*@
+                            <img src=@Url.Content("~/Image/"+item.Imagepath) asp-append-version="true"  height="200"/>
+                        </div>
+                        <h1>@item.Name</h1>
+                        <br>
+                        <h3>
+                            @item.Description<br>
+                        </h3>
+                        <ul>
+                            <li>@item.Price</li>
+                            @{
+                                if (item.Address != null)
+                                {
+                                                <li>@item.Address.City</li>
+                                }
+                                else
+                                {
+                                                <li>No Location</li>
+                                }
+                            }
+
+                            @*<li>Sea view side</li>*@
+                        </ul>
+                        <div class="book_btn d-none d-lg-block">
+                            <a href="#test-form" onClick="reply_click(@item.Id)" class="popup-with-form book_now test">book now</a>
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- offers_area_end -->
+<form id="test-form" class="white-popup-block mfp-hide" asp-action="Reservation">
+    <div class="popup_box ">
+        <div class="popup_inner">
+            <h3>Check Availability</h3>
+            <form asp-action="Reservation">
+                <input type="text" hidden asp-for="UserHall.Id" />
+                <input type="text" hidden  id="HallId" asp-for="UserHall.HallId" value=""/>
+                
+                <input type="text" hidden asp-for="UserHall.UserId" value="@ViewBag.userid" />
+                
+                <div class="row">
+                    <div class="col-xl-6">
+                        <input id="datepicker" asp-for="UserHall.StartDate" placeholder="Start Date">
+                        <span asp-validation-for="UserHall.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-xl-6">
+                        <input id="datepicker2" asp-for="UserHall.EndDate" placeholder="End Daate">
+                        <span asp-validation-for="UserHall.EndDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <select class="form-select wide" asp-for="UserHall.CategoryId" id="default-select">
+                            <option data-display="Book type" hidden selected>Book type</option>
+
+                            @foreach (var item in Model.Categories)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                           
+                        </select>
+                        <span asp-validation-for="UserHall.CategoryId" class="text-danger"></span>
+
+                    </div>
+                     <div class="col-xl-12">
+                       <a asp-controller="Home" asp-action="Visa" class=" book_now test"> check card</a>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="col-xl-12">
+                        <button type="submit" class="boxed-btn3">Check Availability</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+@*---------------------*@
+@*<form id="card-form" class="white-popup-block mfp-hide" asp-action="Visa">
+    <div class="popup_box ">
+        <div class="popup_inner">
+            <h3>Credit card</h3>
+            <form  asp-action="Visa">
+   
+                <div class="row">
+                    <div class="col-xl-6">
+                        <input type="text" name="cardNumber"  placeholder="Card Number">
+                       
+                    </div>
+                    <div class="col-xl-6">
+                        <input type="text" name="balnce" placeholder="Balnce">
+                       
+                    </div>
+  
+                    <div class="col-xl-12">
+                        <button type="submit" class="boxed-btn3">Check card</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>*@
+<!-- video_area_start -->
+<!-- video_area_end -->
+<!-- about_area_start -->
+@*   <div class="about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7">
+                    <div class="about_thumb2 d-flex">
+                        <div class="img_1">
+                            <img src="~/Home/img/about/1.png" alt="">
+                        </div>
+                        <div class="img_2">
+                            <img src="~/Home/img/about/2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5">
+                    <div class="about_info">
+                        <div class="section_title mb-20px">
+                            <span>Delicious Food</span>
+                            <h3>We Serve Fresh and <br>
+                                Delicious Food</h3>
+                        </div>
+                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
+                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
+                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
+                        <a href="#" class="line-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about_area_end -->*@
+ <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-100">
+                    <span>feedback</span>
+                    <h3>Customer Feedback</h3>
+                </div>
+            </div>
+        </div>
+        <section class="contact-section">
+            <div class="container">
+        <form asp-action="AddTestimonials">
+             <div class="row">
+               <div class="col-lg-10">
+                 <div class="section_title text-center mb-100">
+                    <div class="col-12">
+                        <input type="text" hidden asp-for="tests.UserId" value="@ViewBag.userid" />
+                        <div class="form-group ">
+                          <textarea class="form-control w-100" asp-for="tests.Feedback"  cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter your Feedback">
+
+                          </textarea>
+                           <span asp-validation-for="tests.Feedback" class="text-danger"></span>              
+                          </div>
+                           <div class="form-group mt-3">
+                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                            </div>
+                      </div>
+             </div>
+             </div>
+             </div>
+        </form>
+        </div>
+        </section>
+
+
+@section scripts{
+    <script>
+  function reply_click(clicked_id)
+  {
+      document.getElementById("HallId").value =clicked_id;
+  }
+document.getElementById('hallId').value = reply_click(clicked_id);
+    </script>
+}
+
+
+

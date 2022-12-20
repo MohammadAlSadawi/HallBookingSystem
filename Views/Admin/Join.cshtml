@@ -1,0 +1,39 @@
+﻿    @model IEnumerable<JoinTables>       
+
+<div class="row">
+                            <div class="col-md-11">
+                                <h2 class="title-1 m-b-25">Users Register Details</h2>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>start date </th>
+                                                <th>end date</th>
+                                                <th>hall name</th>
+                                                 <th>user name</th>
+                                                  <th>category name</th>
+                                                
+                                                @*<th class="text-right">price</th>
+                                                <th class="text-right">quantity</th>
+                                                <th class="text-right">total</th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                             {
+                                    
+                            
+                                            <tr>
+                                                <td>@item.userhall.StartDate</td>
+                                                <td>@item.userhall.EndDate</td>
+                                                <td>@item.hall.Name</td>
+                                                 <td>@item.user.FirstName</td>
+                                                  <td>@item.category.Name</td>
+                                                
+                                            </tr>
+                                              }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
